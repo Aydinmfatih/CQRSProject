@@ -1,0 +1,30 @@
+﻿@model List<CQRSProject.CQRSPattern.Results.GetCategoryQueryResult>
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <br />
+    <table class="table table-bordred">
+        <tr>
+            <th>#</th>
+            <th>Kategori Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td><a class="btn btn-danger" href="/Category/DeleteProduct/@item.CategoryId">Sil</a></td>
+                <td><a class="btn btn-danger" href="/Category/UpdateProduct/@item.CategoryId">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Category/CreateCategory" class="btn btn-primary">Yeni Kategori Girişi</a>
+
+</div>
