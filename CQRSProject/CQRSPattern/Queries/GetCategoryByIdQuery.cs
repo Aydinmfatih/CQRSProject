@@ -4,7 +4,7 @@
     {
         public GetCategoryByIdQuery()
         {
-            Id = id;
+            Id = Id;
         }
         public int Id { get; set; }
     }
