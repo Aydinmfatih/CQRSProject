@@ -1,6 +1,7 @@
 using CQRSProject.CQRSPattern.Handlers;
 using CQRSProject.CQRSPattern.Results;
 using CQRSProject.DAL.Context;
+using System.Reflection;
 
 namespace CQRSProject
 {
@@ -16,6 +17,7 @@ namespace CQRSProject
             builder.Services.AddScoped<GetCategoryQueryHandler>();
             builder.Services.AddScoped<CreateCategoryCommandHandler>();
             builder.Services.AddScoped<CreateProductCommandHandler>();
+            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             builder.Services.AddControllersWithViews();
 

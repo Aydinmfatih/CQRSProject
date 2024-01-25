@@ -33,7 +33,7 @@ namespace CQRSProject.Controllers
         public IActionResult CreateProduct(CreateProductCommand command)
         {
             _createProductCommand.Handle(command);
-            return View();
+            return RedirectToAction("Index");   
         }
 
     }
