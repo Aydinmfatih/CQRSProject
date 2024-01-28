@@ -19,6 +19,7 @@ namespace CQRSProject
             builder.Services.AddScoped<CreateProductCommandHandler>();
             builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
             builder.Services.AddScoped<UpdateCategoryCommandHandler>();
+            builder.Services.AddScoped<RemoveCategoryCommandHandler>();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             builder.Services.AddControllersWithViews();
