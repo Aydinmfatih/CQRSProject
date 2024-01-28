@@ -2,9 +2,9 @@
 {
     public class GetCategoryByIdQuery
     {
-        public GetCategoryByIdQuery()
+        public GetCategoryByIdQuery(int id)
         {
-            Id = Id;
+            Id = id;
         }
         public int Id { get; set; }
     }

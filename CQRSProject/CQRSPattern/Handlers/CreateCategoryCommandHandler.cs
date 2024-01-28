@@ -17,7 +17,7 @@ namespace CQRSProject.CQRSPattern.Handlers
         }
         public void Handle(CreateCategoryCommand command)
         {
-           var value = _mapper.Map<CreateCategoryCommand,Category>(command);
+           var value = _mapper.Map<Category>(command);
             _context.Categories.Add(value);
             _context.SaveChanges();
                 

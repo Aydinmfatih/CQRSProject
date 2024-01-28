@@ -1,5 +1,7 @@
 ﻿using CQRSProject.CQRSPattern.Commands;
 using CQRSProject.CQRSPattern.Handlers;
+using CQRSProject.CQRSPattern.Queries;
+using MessagePack;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CQRSProject.Controllers
@@ -8,10 +10,14 @@ namespace CQRSProject.Controllers
     {
         private readonly GetCategoryQueryHandler _getCategoryQueryHandler;
         private readonly CreateCategoryCommandHandler _createCategoryCommandHandler;
-        public CategoryController(GetCategoryQueryHandler getCategoryQueryHandler, CreateCategoryCommandHandler createCategoryCommandHandler)
+        private readonly GetCategoryByIdQueryHandler _getCategoryByIdQueryHandler;
+        private readonly UpdateCategoryCommandHandler _updateCategoryCommandHandler;
+        public CategoryController(GetCategoryQueryHandler getCategoryQueryHandler, CreateCategoryCommandHandler createCategoryCommandHandler, GetCategoryByIdQueryHandler getCategoryByIdQueryHandler, UpdateCategoryCommandHandler updateCategoryCommandHandler)
         {
             _getCategoryQueryHandler = getCategoryQueryHandler;
             _createCategoryCommandHandler = createCategoryCommandHandler;
+            _getCategoryByIdQueryHandler = getCategoryByIdQueryHandler;
+            _updateCategoryCommandHandler = updateCategoryCommandHandler;
         }
 
         public IActionResult Index()
@@ -25,13 +31,23 @@ namespace CQRSProject.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryCommand command)
         {
             _createCategoryCommandHandler.Handle(command);  
             return RedirectToAction("Index");
         }
-
+        [HttpGet]
+        public IActionResult UpdateCategory(int id)
+        {
+            var values = _getCategoryByIdQueryHandler.Handle(new GetCategoryByIdQuery(id));
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult UpdateCategory(UpdateCategoryCommand command)
+        {
+            _updateCategoryCommandHandler.Handle(command);
+            return RedirectToAction("Index");
+        }
     }
 }

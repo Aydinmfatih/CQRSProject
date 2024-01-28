@@ -1,0 +1,17 @@
+﻿@model CQRSProject.CQRSPattern.Results.GetCategoryQueryResult
+@{
+    Layout = null;
+}
+
+<div class="container">
+    <br />
+    <br />
+    <form method="Post">
+        <input type="hidden" asp-for="CategoryId" />
+        <label>Kategori Adı</label>
+        <input type="text" asp-for="CategoryName" class="form-control" />
+        <br />
+        <button class="btn btn-success">Kategoriyi güncelle</button>
+    </form>
+</div>
+
